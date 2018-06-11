@@ -22,7 +22,31 @@ public class EmployeeTO {
 	private String approvalStatus;
 	private String issue;
 
+	
+	public EmployeeTO() {
+		
+	}
 
+
+	public EmployeeTO(String empid, String firstName, String lastName, String department, Date creationDate,
+			Date updationDate, String securityQues1, String securityAns1, String securityQues2, String securityAns2,
+			String managerId, String email, String approvalStatus, String issue) {
+		super();
+		this.empid = empid;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.department = department;
+		this.creationDate = creationDate;
+		this.updationDate = updationDate;
+		this.securityQues1 = securityQues1;
+		this.securityAns1 = securityAns1;
+		this.securityQues2 = securityQues2;
+		this.securityAns2 = securityAns2;
+		this.managerId = managerId;
+		this.email = email;
+		this.approvalStatus = approvalStatus;
+		this.issue = issue;
+	}
 
 	public String getEmpid() {
 		return empid;

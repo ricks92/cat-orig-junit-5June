@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ import com.hsc.cat.utilities.JSONOutputModel;
 @WebMvcTest(value = SkillController.class, secure = false)
 public class SkillControllerTest {
 
+	@Rule
+	public Timeout globalTimeout = Timeout.millis(1000); 
 	
 	@Autowired
 	private MockMvc mockMvc;

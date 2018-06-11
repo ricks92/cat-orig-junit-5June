@@ -1,10 +1,9 @@
 package com.hsc.cat.controller;
 
-import java.awt.PageAttributes.MediaType;
 import java.util.List;
 
-import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,27 +12,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hsc.cat.TO.EmployeeTO;
 import com.hsc.cat.TO.GetManagerDetailsResponse;
+import com.hsc.cat.TO.ManagerDetails;
+import com.hsc.cat.TO.ResponseTO;
+import com.hsc.cat.TO.ViewTeamTO;
 import com.hsc.cat.VO.EmployeeDetailsVO;
-import com.hsc.cat.VO.VerifyManagerVO;
-import com.hsc.cat.entity.EmployeeDetails;
 import com.hsc.cat.service.EmployeeDetailService;
 import com.hsc.cat.utilities.JSONOutputEnum;
 import com.hsc.cat.utilities.JSONOutputModel;
 import com.hsc.cat.utilities.RESTURLConstants;
 import com.hsc.cat.utilities.StatusCode;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
-import com.hsc.cat.TO.ManagerDetails;
-import com.hsc.cat.TO.ResponseTO;
-import com.hsc.cat.TO.ViewTeamTO;
 
 @RestController
 public class EmployeeDetailsController {
@@ -159,12 +151,30 @@ public class EmployeeDetailsController {
 	
 	}*/
 	
-	@RequestMapping(value=RESTURLConstants.VERIFY_MANAGER,method=RequestMethod.POST)
+/*	@RequestMapping(value=RESTURLConstants.VERIFY_MANAGER,method=RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity verifyManager(@PathVariable("empId")String empId ) {
 		boolean updatedResult=Boolean.FALSE;
 		ResponseTO responseTO=new ResponseTO();
 		updatedResult=employeeDetailService.updateApprovalStatus(empId);
+		if(updatedResult) {
+			responseTO.setResponseCode("1");
+			responseTO.setResponseMessage("SUCCESS");
+		}else {
+			responseTO.setResponseCode("0");
+			responseTO.setResponseMessage("FAILURE");
+		}
+		
+		return new ResponseEntity(responseTO, HttpStatus.ACCEPTED);
+	
+	}*/
+	
+	@RequestMapping(value=RESTURLConstants.VERIFY_MANAGER,method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity verifyManager(@PathVariable("empId")String empId , @PathVariable("approvalStatus")String approvalStatus) {
+		boolean updatedResult=Boolean.FALSE;
+		ResponseTO responseTO=new ResponseTO();
+		updatedResult=employeeDetailService.updateApprovalStatus(empId,approvalStatus);
 		if(updatedResult) {
 			responseTO.setResponseCode("1");
 			responseTO.setResponseMessage("SUCCESS");

@@ -2,7 +2,9 @@ package com.hsc.cat;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -32,6 +34,8 @@ import com.hsc.cat.service.UserDetailService;
 @WebMvcTest(value = UserController.class, secure = false)
 public class UserControllerTest {
 
+	@Rule
+	public Timeout globalTimeout = Timeout.millis(1000); 
 	
 	@Autowired
 	private MockMvc mockMvc;

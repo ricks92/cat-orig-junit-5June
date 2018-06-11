@@ -159,7 +159,7 @@ else
 				EmployeeSkillEntity recordExists=employeeSkillRepository.findByEmpIdAndSkillIdAndWeekNumberAndRatingDoneByAndRatingDoneByEmpId(updateSkillVO.getEmpId(), updateSkillVO.getSkillId(), updateSkillVO.getWeekNumber(), updateSkillVO.getRatingDoneBy(),updateSkillVO.getRatingDoneByEmpId());
 				
 				if(recordExists==null) {
-					LOGGER.debug("Creating new row for rating and comments..Rating \"+updateSkillVO.getEmpId()+\" Feedback is being given by \"+updateSkillVO.getRatingDoneByEmpId()");
+					LOGGER.debug("Creating new row for rating and comments..Rating "+updateSkillVO.getEmpId()+" Feedback is being given by "+updateSkillVO.getRatingDoneByEmpId());
 					EmployeeSkillEntity updateSkillEntity= new EmployeeSkillEntity();
 					updateSkillEntity.setEmpId(updateSkillVO.getEmpId());
 					updateSkillEntity.setSkillId(updateSkillVO.getSkillId());

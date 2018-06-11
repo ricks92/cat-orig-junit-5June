@@ -14,6 +14,32 @@ public class EmployeeDetailsVO {
 	private String securityQues2;
 	private String securityAns2;
 	private String email;
+	
+	
+	
+	public EmployeeDetailsVO() {
+		
+	}
+	
+	public EmployeeDetailsVO(String username, String password, String role, String firstName, String lastName,
+			String department, String managerId, String securityQues1, String securityAns1, String securityQues2,
+			String securityAns2, String email) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.department = department;
+		this.managerId = managerId;
+		this.securityQues1 = securityQues1;
+		this.securityAns1 = securityAns1;
+		this.securityQues2 = securityQues2;
+		this.securityAns2 = securityAns2;
+		this.email = email;
+	}
+	
+	
 	public String getUsername() {
 		return username;
 	}

@@ -111,9 +111,9 @@ public class EmployeeDetailService {
 			String from = "catuser1234@gmail.com";
 			String to = "knwnobounds@gmail.com";
 			String subject = "Request came to register manager!";
-			String body = "Request came to register manager with employee id:"+evo.getUsername()+"\nDetails: \nEmployee id: "+evo.getUsername()+"\nFirst Name: "+evo.getFirstName()+"\nLast Name: "+evo.getLastName()+"\nEmail: "+evo.getEmail()+"\nPlease verify: 'http://localhost:8030/verifyManager/'"+evo.getUsername();
+			String body = "Request came to register manager with employee id:"+evo.getUsername()+"\nDetails: \nEmployee id: "+evo.getUsername()+"\nFirst Name: "+evo.getFirstName()+"\nLast Name: "+evo.getLastName()+"\nEmail: "+evo.getEmail()+"\nPlease verify: http://192.168.2.113:8030/verifyManager/"+evo.getUsername();
 			
-			mailSender.sendMail(from, to, subject, body); //send email
+		//	mailSender.sendMail(from, to, subject, body); //send email
 			  user.setEmployeeDetails(emp);  //save manager
 			 userRepository.save(user);
 			 saved = employeeDetailRepository.save(emp);
@@ -220,7 +220,7 @@ public class EmployeeDetailService {
 	
 	
 	
-	public boolean updateApprovalStatus(String empId) {
+	/*public boolean updateApprovalStatus(String empId) {
 		boolean result = Boolean.FALSE;
 		int updatdRow = employeeDetailRepository.updateManagersApprovalStatus(empId);
 		if (updatdRow > 0) {
@@ -228,9 +228,18 @@ public class EmployeeDetailService {
 		}
 
 		return result;
+	}*/
+
+	public boolean updateApprovalStatus(String empId, String approvalStatus) {
+		boolean result = Boolean.FALSE;
+		int updatdRow = employeeDetailRepository.updateManagersApprovalStatus(empId,approvalStatus);
+		if (updatdRow > 0) {
+			result = Boolean.TRUE;
+		}
+
+		return result;
 	}
 
-	
 	
 	public ViewTeamTO getEmployeeUnderManager(String managerId) {
 
